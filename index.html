@@ -1,41 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Challenge - DOM</title>
-  </head>
-  <body>
-    <div id="app">
-      <!-- TODO: Buatlah sebuah header dengan id todo-title -->
-      <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
 
-      <!-- Section: input -->
-      <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
-      <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Challenge - DOM</title>
+</head>
+<style>
+  * {
+    padding: 0;
+    margin: 0;
+  }
 
-      <!-- Section output -->
-      <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
-    </div>
+  body {
+    background-color: #BBA0CA;
+  }
 
-    <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
-    <script>
-      // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+  #app {
+    display: block;
+    width: 300px;
+    height: 250px;
+    background-color: aliceblue;
+    margin: auto;
+    padding-top: 15px;
+    margin-top: 100px;
+    border-radius: 10px;
+  }
 
-      // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
-      // Fungsi yang digunakan untuk menambahkan tulisan
-      // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+  #todo-title {
+    display: block;
+    text-align: center;
+    padding: 10px 0 0 0;
+  }
 
-      // TODO: register event onclick / addEventListener untuk button
-      // akan menjalankan fungsi fnClickHandler
-      
-      // TODO: register event onkeypress / addEventListener untuk input
-      // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
-    </script>
-  </body>
+  #todo-input {
+    margin-top: 10px;
+    margin-left: 60px;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+    <h1 id="todo-title">Todo-list</h1>
+    <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
+    <p id="todo-title">-Today i need to-</p>
+    <!-- Section: input -->
+    <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
+    <input type="text" id="todo-input">
+    <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
+    <button type="submit" id="todo-submit">submit</button>
+    <!-- Section output -->
+    <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+    <ul id="todo-output"></ul>
+  </div>
+
+  <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
+  <script>
+    // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
+    let button = document.querySelector('#todo-submit');
+    let input = document.querySelector('#todo-input');
+    let output = document.querySelector('#todo-output');
+
+    // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
+    // Fungsi yang digunakan untuk menambahkan tulisan
+    // Jangan ubah cara deklarasi fungsinya, cukup isi saja
+    function fnClickHandler(toDoItem) {
+      const konten = document.createElement('li');
+      konten.textContent = toDoItem;
+      output.appendChild(konten);
+    }
+    // TODO: register event onclick / addEventListener untuk button
+    // akan menjalankan fungsi fnClickHandler
+    button.addEventListener("click", (event) => {
+      fnClickHandler(input.value);
+      input.value = "";
+      input.focus();
+    });
+    // TODO: register event onkeypress / addEventListener untuk input
+    // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+    input.addEventListener("keypress", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault;
+        fnClickHandler(input.value);
+        input.value = "";
+        input.focus();
+      }
+    })
+  </script>
+</body>
+
 </html>
